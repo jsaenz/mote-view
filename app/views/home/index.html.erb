@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="span3 well">
+        <%= form_tag createMote_path, :method => :post do -%>
+            <h2>New Mote</h2>
+            <p>A0</p>
+            <%= select("a0", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <p>A1</p>
+            <%= select("a1", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <p>A2</p>
+            <%= select("a2", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <p>A3</p>
+            <%= select("a3", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <p>A4</p>
+            <%= select("a4", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <div class="btn-grp pull-left">
+                <%= submit_tag 'create mote', :class =>"btn btn-large btn-block" %>
+            </div>
+        <%- end %>
+    </div>
+</div>
+
+

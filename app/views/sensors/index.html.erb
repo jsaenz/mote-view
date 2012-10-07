@@ -1,0 +1,33 @@
+
+<div class="row">
+    <div class="span7 well">
+        <h2>Listing sensors</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Content</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <% @sensors.each do |sensor| %>
+            <tr>
+                <td><%= sensor.name %></td>
+                <td><%= sensor.description %></td>
+                <td><%= sensor.content %></td>
+                <td><%= link_to 'Show', sensor %></td>
+                <td><%= link_to 'Edit', edit_sensor_path(sensor) %></td>
+                <td><%= link_to 'Destroy', sensor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+        </table>
+
+        <br />
+        <div class="btn-group span2">
+            <%= link_to 'New Sensor', new_sensor_path, :class => "btn btn-large btn-block" %>
+            <%= link_to 'back', admin_path, :class => "btn btn-large btn-block" %>
+        </div>
+    </div>
+</div>
