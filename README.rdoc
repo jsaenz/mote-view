@@ -8,7 +8,7 @@ Once you have this done you can start the server with the following command
 bundle install && bundle exec rails server -e development
 
 Once the server is started it will tell you the server can be accessed at localhost:3000
-
+==
 
 == Welcome to Rails
 
