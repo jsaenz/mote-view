@@ -1,4 +1,8 @@
 MoteView::Application.routes.draw do
+  resources :transforms
+
+  resources :radios
+
   devise_for :users
 
   resources :sensors

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005181924) do
+ActiveRecord::Schema.define(:version => 20121008000450) do
 
   create_table "motes", :force => true do |t|
     t.string   "name"
@@ -21,7 +21,23 @@ ActiveRecord::Schema.define(:version => 20121005181924) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "radios", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.text     "content"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "sensors", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.text     "content"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "transforms", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.text     "content"

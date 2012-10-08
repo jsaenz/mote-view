@@ -2,16 +2,30 @@
     <div class="span3 well">
         <%= form_tag createMote_path, :method => :post do -%>
             <h2>New Mote</h2>
+            <h3>Radio</h3>
+            <%= select("radio", "id", @radios.collect {|radio| [ radio.name, radio.id] }, { :include_blank => "select radio" }) %>
+            <h3>Sensors</h3>
             <p>A0</p>
-            <%= select("a0", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <%= select("sa0", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
             <p>A1</p>
-            <%= select("a1", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <%= select("sa1", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
             <p>A2</p>
-            <%= select("a2", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <%= select("sa2", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
             <p>A3</p>
-            <%= select("a3", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <%= select("sa3", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
             <p>A4</p>
-            <%= select("a4", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <%= select("sa4", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+            <h3>Transforms</h3>
+            <p>A0</p>
+            <%= select("ta0", "id", @transforms.collect {|transform| [ transform.name, transform.id] }, { :include_blank => "select transform" }) %>
+            <p>A1</p>
+            <%= select("ta1", "id", @transforms.collect {|transform| [ transform.name, transform.id] }, { :include_blank => "select transform" }) %>
+            <p>A2</p>
+            <%= select("ta2", "id", @transforms.collect {|transform| [ transform.name, transform.id] }, { :include_blank => "select transform" }) %>
+            <p>A3</p>
+            <%= select("ta3", "id", @transforms.collect {|transform| [ transform.name, transform.id] }, { :include_blank => "select transform" }) %>
+            <p>A4</p>
+            <%= select("ta4", "id", @transforms.collect {|transform| [ transform.name, transform.id] }, { :include_blank => "select transform" }) %>
             <div class="btn-grp pull-left">
                 <%= submit_tag 'create mote', :class =>"btn btn-large btn-block" %>
             </div>
