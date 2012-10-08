@@ -1,9 +1,11 @@
 <div class="row">
-    <div class="span3 well">
-        <%= form_tag createMote_path, :method => :post do -%>
-            <h2>New Mote</h2>
+    <%= form_tag createMote_path, :method => :post do -%>
+        <h2>New Mote</h2>
+        <div class="span3">
             <h3>Radio</h3>
             <%= select("radio", "id", @radios.collect {|radio| [ radio.name, radio.id] }, { :include_blank => "select radio" }) %>
+        </div>
+        <div class="span3">
             <h3>Sensors</h3>
             <p>A0</p>
             <%= select("sa0", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
@@ -15,6 +17,8 @@
             <%= select("sa3", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
             <p>A4</p>
             <%= select("sa4", "id", @sensors.collect {|sensor| [ sensor.name, sensor.id] }, { :include_blank => "select sensor" }) %>
+        </div>
+        <div class="span3">
             <h3>Transforms</h3>
             <p>A0</p>
             <%= select("ta0", "id", @transforms.collect {|transform| [ transform.name, transform.id] }, { :include_blank => "select transform" }) %>
@@ -26,9 +30,10 @@
             <%= select("ta3", "id", @transforms.collect {|transform| [ transform.name, transform.id] }, { :include_blank => "select transform" }) %>
             <p>A4</p>
             <%= select("ta4", "id", @transforms.collect {|transform| [ transform.name, transform.id] }, { :include_blank => "select transform" }) %>
-            <div class="btn-grp pull-left">
-                <%= submit_tag 'create mote', :class =>"btn btn-large btn-block" %>
-            </div>
+        </div>
+        <div class="btn-grp pull-right">
+            <%= submit_tag 'create mote', :class =>"btn btn-large btn-block" %>
+        </div>
         <%- end %>
     </div>
 </div>
