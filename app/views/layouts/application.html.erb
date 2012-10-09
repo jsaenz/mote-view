@@ -36,35 +36,8 @@
   </head>
   
   <body>
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <%- if !user_signed_in?%>
-            <a class="brand" href="#">Mote view</a>
-          <%- elsif user_signed_in?%>
-            <a class="brand" href="#"><%=current_user.email%></a>
-          <%- end %>
-          <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "New configuration", home_path  %></li>
-              <li><%= link_to "Load configuration", loadMote_path%></li>
-              <li><%= link_to "Admin", admin_path%></li>
-              
-            </ul>
-            <div class="span2">
-            <% if user_signed_in? %>
-                <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, :class =>"btn btn-large btn-block" %>
-            <%- end %>
-          </div>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+    <%= render 'layouts/header' %>
+    
     <%-if !notice.nil?%>
     <p class="notice"><%= notice %></p>
     <%-elsif !alert.nil?%>

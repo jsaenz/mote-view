@@ -1,4 +1,5 @@
 class SensorsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /sensors
   # GET /sensors.json
   def index

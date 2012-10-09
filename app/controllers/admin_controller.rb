@@ -3,6 +3,5 @@ class AdminController < ApplicationController
   
   def index
     @users=User.all
-    #@admins=Admin.all
   end
 end
