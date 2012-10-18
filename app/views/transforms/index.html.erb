@@ -1,0 +1,27 @@
+<h1>Listing transforms</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @transforms.each do |transform| %>
+  <tr>
+    <td><%= transform.name %></td>
+    <td><%= transform.description %></td>
+    <td><%= transform.content %></td>
+    <td><%= link_to 'Show', transform %></td>
+    <td><%= link_to 'Edit', edit_transform_path(transform) %></td>
+    <td><%= link_to 'Destroy', transform, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Transform', new_transform_path %>

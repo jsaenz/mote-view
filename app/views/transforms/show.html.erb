@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @transform.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @transform.description %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @transform.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_transform_path(@transform) %> |
+<%= link_to 'Back', transforms_path %>

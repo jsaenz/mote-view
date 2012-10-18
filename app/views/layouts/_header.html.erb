@@ -1,0 +1,31 @@
+<div class-"tabbable">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <%- if !user_signed_in?%>
+                <a class="brand" href="#">Mote view</a>
+              <%- elsif user_signed_in?%>
+                <a class="brand" href="#"><%=current_user.email%></a>
+            <%- end %>
+            <div class="container nav-collapse">
+                <ul class="nav">
+                    <li class="divider-vertical"></li>
+                    <li><%= link_to "New configuration", home_path  %></li>
+                    <li class="divider-vertical"></li>
+                    <li><%= link_to "Load configuration", loadMote_path%></li>
+                    <li class="divider-vertical"></li>
+                    <li><%= link_to "Admin", admin_path%></li>
+                    <li class="divider-vertical"></li>              
+                </ul>
+                <ul class="nav pull-right">
+                    <li>
+                        <% if user_signed_in? %>
+                            <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, :class =>"btn btn-large btn-block" %>
+                        <%- end %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
