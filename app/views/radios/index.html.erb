@@ -1,27 +1,32 @@
-<h1>Listing radios</h1>
+<div class="row">
+    <div class="span7 well">
+        <h2>Listing radios</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Content</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+            <% @radios.each do |radio| %>
+            <tr>
+                <td><%= radio.name %></td>
+                <td><%= radio.description %></td>
+                <td><%= radio.content %></td>
+                <td><%= link_to 'Show', radio %></td>
+                <td><%= link_to 'Edit', edit_radio_path(radio) %></td>
+                <td><%= link_to 'Destroy', radio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+        </table>
 
-<% @radios.each do |radio| %>
-  <tr>
-    <td><%= radio.name %></td>
-    <td><%= radio.description %></td>
-    <td><%= radio.content %></td>
-    <td><%= link_to 'Show', radio %></td>
-    <td><%= link_to 'Edit', edit_radio_path(radio) %></td>
-    <td><%= link_to 'Destroy', radio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Radio', new_radio_path %>
+        <br />
+        <div class="btn-group span2">
+            <%= link_to 'New Radio', new_radio_path, :class => "btn btn-large btn-block" %>
+            <%= link_to 'back', admin_path, :class => "btn btn-large btn-block" %>
+        </div>
+    </div>
+</div>
