@@ -1,14 +1,22 @@
 source 'https://rubygems.org'
 
+#install rails framework
 gem 'rails', '3.2.8'
+
+#gem for logins
 gem 'devise'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+#install db gem
 gem 'sqlite3'
+
+#for more advanced views
 gem "twitter-bootstrap-rails"
 
+#gem for documentation
+gem "yard"
 
 # Gems used only for assets and not required
 # in production environments by default.
