@@ -1,4 +1,6 @@
 MoteView::Application.routes.draw do
+  resources :motes
+
   resources :transforms
 
   resources :radios
