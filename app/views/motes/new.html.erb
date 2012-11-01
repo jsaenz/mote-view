@@ -2,6 +2,6 @@
 
 <%= form_tag '/home/loadMote', :multipart => true do %>
   <label for="file">File to Upload</label> <%= file_field_tag "file" %>
-  <%= submit_tag %>
+  <%= submit_tag 'Upload'%>
 <% end %>
 <%= link_to 'Back', motes_path %>
