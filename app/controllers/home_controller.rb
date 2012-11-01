@@ -78,11 +78,12 @@ class HomeController < ApplicationController
       lines.each do |l| 
         m = l.match(MOTE_JSON_REGEX) #parse line 
         mote = Mote.create name: m[1], radio: m[2]
-        if m[3]
-          if m[4] { sensors = m[4].match(SENSOR_REGEX) }
-          if m[5] { transforms = m[5].match(TRANSFORM_REGEX) }
-        end
+        #if m[3]
+        #  if m[4] { sensors = m[4].match(SENSOR_REGEX) }
+        #  if m[5] { transforms = m[5].match(TRANSFORM_REGEX) }
+        #end
       end
     end
+  redirect_to '/motes/'
   end
 end
