@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @mote.name %>
+</p>
+
+<p>
+  <b>Radio:</b>
+  <%= @mote.radio %>
+</p>
+
+
+<%= link_to 'Edit', edit_mote_path(@mote) %> |
+<%= link_to 'Back', motes_path %>
