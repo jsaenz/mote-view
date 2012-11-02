@@ -1,5 +1,5 @@
 class Mote < ActiveRecord::Base
-  attr_accessible :name, :radio
+  attr_accessible :name, :radio, :sensors, :ports, :transforms
   
   validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
 

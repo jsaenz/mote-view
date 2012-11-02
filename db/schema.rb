@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031205503) do
+ActiveRecord::Schema.define(:version => 20121102004014) do
 
   create_table "motes", :force => true do |t|
     t.string   "name"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20121031205503) do
   create_table "ports", :force => true do |t|
     t.integer "sensor_id"
     t.integer "mote_id"
-    t.integer "transform_id"
     t.integer "portNumber"
   end
 
