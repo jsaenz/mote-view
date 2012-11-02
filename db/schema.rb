@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121102004014) do
+ActiveRecord::Schema.define(:version => 20121102004200) do
 
   create_table "motes", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20121102004014) do
     t.text     "content"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "transform_ports", :force => true do |t|
+    t.integer  "transform_id"
+    t.integer  "port_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "transforms", :force => true do |t|
