@@ -1,27 +1,32 @@
-<h1>Listing transforms</h1>
+<div class="row">
+    <div class="span7 well">
+        <h2>Listing transforms</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Content</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+            <% @transforms.each do |transform| %>
+            <tr>
+                <td><%= transform.name %></td>
+                <td><%= transform.description %></td>
+                <td><%= transform.content %></td>
+                <td><%= link_to 'Show', transform %></td>
+                <td><%= link_to 'Edit', edit_transform_path(transform) %></td>
+                <td><%= link_to 'Destroy', transform, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+        </table>
 
-<% @transforms.each do |transform| %>
-  <tr>
-    <td><%= transform.name %></td>
-    <td><%= transform.description %></td>
-    <td><%= transform.content %></td>
-    <td><%= link_to 'Show', transform %></td>
-    <td><%= link_to 'Edit', edit_transform_path(transform) %></td>
-    <td><%= link_to 'Destroy', transform, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Transform', new_transform_path %>
+        <br />
+        <div class="btn-group span2">
+            <%= link_to 'New transform', new_transform_path, :class => "btn btn-large btn-block" %>
+            <%= link_to 'back', admin_path, :class => "btn btn-large btn-block" %>
+        </div>
+    </div>
+</div>
