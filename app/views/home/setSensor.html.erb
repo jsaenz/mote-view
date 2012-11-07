@@ -1,0 +1,54 @@
+<%- unless flash[:alert].blank? %>
+    <%- alert=flash[:alert] %>
+<%- else %>
+    <div class="row">
+        <h2>Set Sensors</h2>
+        <div class="demo span9" id="droppable_container">
+            <%- i = 0 %>
+            <%- @sensors.each do |sensor|%>
+                <%- i += 1%>
+                
+                <div id="drag_<%= i %>" class="draggable span1">
+                    <%= sensor.name %>
+                </div>
+        
+        
+            <%-end%>
+  
+            <div id="drop_1" class="droppable_item span2">
+                Sensor Port!
+            </div>
+        
+            <div id="drop_2" class="droppable_item span2">
+                Sensor Port!
+            </div>
+        
+        </div>
+    </div>
+
+    <%-x=0%>
+    <%- @sensors.each do |sensor|%>
+        <%- x += 1%>
+        <script type="text/javascript">
+            new Draggable('drag_<%= x %>', {
+                revert: true, 
+                snap: [40,40]
+                });
+        </script>
+    <%-end %>
+    
+    <script type="text/javascript">
+
+        Droppables.add('drop_1', { 
+            accept: 'draggable',
+            hoverclass: 'hover',
+            onDrop: function() { $('drop_1').highlight(); }
+            });
+        
+        Droppables.add('drop_2', { 
+            accept: 'draggable',
+            hoverclass: 'hover',
+            onDrop: function() { $('drop_2').highlight(); }
+            });
+    </script>
+<%- end %>

@@ -86,4 +86,25 @@ class HomeController < ApplicationController
     end
   redirect_to '/motes/'
   end
+  
+  def setSensor
+    @sensors = Sensor.all
+    if @sensors.nil? or @sensors.empty?
+      flash.now[:alert] = "There are no sensors to add to your mote. Have an Administrator add a Sensor."
+    end
+  end
+  
+  def setRadio
+    @radios = Radio.all
+    if @radios.nil? or @radios.empty?
+      flash.now[:alert] = "There are no radios to add to your mote. Have an Administrator add a Radio."
+    end
+  end
+  
+  def setTransform
+    @transforms = Transform.all
+    if @transforms.nil? or @transforms.empty?
+      flash.now[:alert] = "There are no transformations to add to your mote. Have an Administrator add a Transformation."
+    end
+  end
 end

@@ -7,23 +7,21 @@
               <%- elsif user_signed_in?%>
                 <a class="brand" href="#"><%=current_user.email%></a>
             <%- end %>
-            <div class="container nav-collapse">
+            <div class="navbar">
                 <ul class="nav">
                     <li class="divider-vertical"></li>
-                    <li><%= link_to "New configuration", home_path  %></li>
+                    <li class="<%= 'active' if params[:controller] == 'home' %>"><%= link_to "New configuration", home_path  %></li>
                     <li class="divider-vertical"></li>
-                    <li><%= link_to "Load configuration", '/motes/new'%></li>
+                    <li class="<%= 'active' if params[:controller] == 'motes' %>"><%= link_to "Load configuration", motes_path%></li>
                     <li class="divider-vertical"></li>
-                    <li><%= link_to "Admin", admin_path%></li>
+                    <li class="<%= 'active' if params[:controller] == 'admin' %>"><%= link_to "Admin", admin_path%></li>
                     <li class="divider-vertical"></li>              
                 </ul>
-                <ul class="nav pull-right">
-                    <li>
-                        <% if user_signed_in? %>
-                            <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, :class =>"btn btn-large btn-block" %>
-                        <%- end %>
-                    </li>
-                </ul>
+                <% if user_signed_in? %>
+                    <form class="navbar pull-right">
+                            <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, :class =>"btn btn-medium btn-block" %>
+                    </form>
+                <%- end %>
             </div>
         </div>
       </div>
