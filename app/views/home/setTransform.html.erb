@@ -17,7 +17,10 @@
             </div>
             <div class="span3">
                 <div id="drop_1" class="droppable_item">
-                    Transform Port!
+                    Transform Port 1!
+                </div>
+                <div id="drop_2" class="droppable_item">
+                    Transform Port 2!
                 </div>
             </div>        
         </div>
@@ -45,6 +48,12 @@
            accept: 'draggable',
            hoverclass: 'hover',
            onDrop: function() { $('drop_1').highlight(); }
+            });
+            
+        Droppables.add('drop_2', { 
+           accept: 'draggable',
+           hoverclass: 'hover',
+           onDrop: function() { $('drop_2').highlight(); }
             });
     </script>
 <%- end %>
