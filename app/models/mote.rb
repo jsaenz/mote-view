@@ -3,6 +3,7 @@ class Mote < ActiveRecord::Base
   
   validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
 
+  belongs_to :radio
   has_many :ports
   has_many :sensors, through: :ports
   has_many :transforms, through: :ports
