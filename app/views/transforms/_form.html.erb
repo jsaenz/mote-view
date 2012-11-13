@@ -1,29 +1,33 @@
-<%= form_for(@transform) do |f| %>
-  <% if @transform.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@transform.errors.count, "error") %> prohibited this transform from being saved:</h2>
+<div class="row">
+    <div class="span3 well">
+        <%= form_for(@transform) do |f| %>
+            <% if @transform.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@transform.errors.count, "error") %> prohibited this transform from being saved:</h2>
 
-      <ul>
-      <% @transform.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+                    <ul>
+                        <% @transform.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="field">
+                <%= f.label :name %><br />
+                <%= f.text_field :name %>
+            </div>
+            <div class="field">
+                <%= f.label :description %><br />
+                <%= f.text_field :description %>
+            </div>
+            <div class="field">
+                <%= f.label :content %><br />
+                <%= f.text_area :content %>
+            </div>
+            <div class="actions">
+                <%= f.submit %>
+            </div>
+    <% end %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
