@@ -1,7 +1,6 @@
-<h1>Load Mote Configuration</h1>
+<h1>New mote</h1>
 
-<%= form_tag '/home/loadMote', :multipart => true do %>
-  <label for="file">File to Upload</label> <%= file_field_tag "file" %>
-  <%= submit_tag 'Upload'%>
-<% end %>
-<%= link_to 'Back', motes_path %>
+<%= render 'form' %>
+<div class="span3">
+<%= link_to 'Back', radios_path,:class => "btn btn-large btn-block" %>
+</div>

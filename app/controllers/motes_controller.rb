@@ -23,11 +23,22 @@ class MotesController < ApplicationController
 
   # GET /motes/upload
   # GET /motes/upload.json
-  def new
-
+  def upload
+    @mote = mote.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @mote }
+    end
+  end
+
+  # GET /motes/new
+  # GET /motes/new.json
+  def new
+    @mote = Mote.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @radio }
     end
   end
 
