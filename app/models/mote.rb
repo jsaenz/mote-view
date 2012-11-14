@@ -15,7 +15,12 @@ class Mote < ActiveRecord::Base
   	transforms = {}
 
   	ports.each do |port|
-  		name = 'A' + port.portNumber.to_s
+  		if port.portNumber < 10
+  			prefix = 'A0'
+  		else
+  			prefix = 'A'
+  		end
+  		name = prefix + port.portNumber.to_s
   		sensors[name] = port.sensor.name
   		i = 0
   		port.transforms.each do |transform|
