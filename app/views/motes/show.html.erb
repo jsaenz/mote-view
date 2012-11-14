@@ -7,7 +7,39 @@
 
 <p>
   <b>Radio:</b>
-  <%= @mote.radio %>
+  <%= @mote.radio.name %>
+</p>
+
+<p>
+    <% ports =  @mote.ports %>
+    <table class="table table-bordered">
+    	<tr><th>Port</th>
+	    	<% ports.each do |port| %>
+	    	  <%= content_tag :td do%>
+	    	    <%= port.portNumber %>
+	          <% end %>
+	    	<% end%>
+    	</tr>
+    	<tr><th>Sensor</th>
+	        <% ports.each do |p| %>
+	    	  <%= content_tag :td do%>
+	    	    <%= p.sensor.name %>
+	          <% end %>
+	    	<% end%>
+    	</tr>
+    	<tr><th>Transforms</th>
+	        <% ports.each do |por| %>
+              <% transforms = por.transforms %>
+              <%= content_tag :td do%>
+                 <% transforms.each do |transform| %>
+		    	    <%= content_tag :p do %>
+		    	       <%= transform.name %>
+		    	    <% end %>
+		          <% end %>
+		      <% end %>
+	    	<% end%>        
+    	</tr>
+    </table>
 </p>
 
 

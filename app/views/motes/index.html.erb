@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Radio</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +11,6 @@
 <% @motes.each do |mote| %>
   <tr>
     <td><%= mote.name %></td>
-    <td><%= mote.radio %></td>
     <td><%= link_to 'Show', mote %></td>
     <td><%= link_to 'Edit', edit_mote_path(mote) %></td>
     <td><%= link_to 'Destroy', mote, method: :delete, data: { confirm: 'Are you sure?' } %></td>

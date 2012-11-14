@@ -7,4 +7,24 @@ class Mote < ActiveRecord::Base
   has_many :ports
   has_many :sensors, through: :ports
   has_many :transforms, through: :ports
+
+
+  def as_json(options = {})
+  	ports = self.ports
+  	sensors = {}
+  	transforms = {}
+
+  	ports.each do |port|
+  		name = 'A' + port.portNumber.to_s
+  		sensors[name] = port.sensor.name
+  		i = 0
+  		port.transforms.each do |transform|
+  			tranName = name + '_' + i.to_s
+  			i = i + 1
+  			transforms[tranName] = transform.name
+  		end
+    end
+
+  	{ mote: {name: self.name, rado: self.radio.name, sensors: sensors, transforms: transforms}}
+  end
 end
