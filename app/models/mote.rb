@@ -1,4 +1,8 @@
+# One mote can have one radio and any number of transforms and sensors
+# @author Tyler Hunt
+# @note transforms are a nested association and as such must be added via a port objects
 class Mote < ActiveRecord::Base
+
   attr_accessible :name, :radio, :sensors, :ports, :transforms
   
   validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
@@ -8,7 +12,11 @@ class Mote < ActiveRecord::Base
   has_many :sensors, through: :ports
   has_many :transforms, through: :ports
 
-
+  # Override json definition for objects of this type
+  #   includes information about radio sensors and transforms
+  # @author Tyler Hunt
+  # @param [hash] options - we don't care it is thrown away
+  # @return [hash] representation of this in JSON
   def as_json(options = {})
   	ports = self.ports
   	sensors = {}
