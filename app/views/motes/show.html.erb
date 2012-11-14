@@ -7,7 +7,9 @@
 
 <p>
   <b>Radio:</b>
-  <%= @mote.radio.name %>
+  <% if @mote.radio %>
+  	<%= @mote.radio.name %>
+  <% end %>
 </p>
 
 <p>
