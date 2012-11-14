@@ -1,0 +1,52 @@
+<%- unless flash[:alert].blank? %>
+    <%- alert=flash[:alert] %>
+<%- else %>
+    <div class="row">
+        <h2>Set Radio</h2>
+        <div class="span9" id="droppable_container">
+            <div class="row">
+            <div class="span2">
+                <%- i = 0 %>
+                <%- @radios.each do |radio|%>
+                    <%- i += 1%>
+                
+                    <div id="drag_<%= i %>" class="draggable">
+                        <%= radio.name %>
+                    </div>
+                <%-end%>
+            </div>
+            <div class="span3">
+                <div id="drop_1" class="droppable_item">
+                    Radio Port!
+                </div>
+            </div>        
+        </div>
+        </div>
+        <div class="span3">
+            <div class="btn-group btn-group-vertical span2">
+                <p><%= link_to "Add Sensors", setSensor_path, :class => "btn btn-large btn-block"%></p>
+            </div>    
+        </div>       
+    </div>
+    
+
+    <%-x=0%>
+    <%- @radios.each do |radio|%>
+        <%- x += 1%>
+        <script type="text/javascript">
+            new Draggable('drag_<%= x %>', {
+                revert: true, 
+                snap: [40,40]
+                });
+        </script>
+    <%-end %>
+    
+    <script type="text/javascript">
+
+        Droppables.add('drop_1', { 
+           accept: 'draggable',
+           hoverclass: 'hover',
+           onDrop: function() { $('drop_1').highlight(); }
+            });
+    </script>
+<%- end %>

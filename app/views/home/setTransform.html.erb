@@ -1,0 +1,50 @@
+<%- unless flash[:alert].blank? %>
+    <%- alert=flash[:alert] %>
+<%- else %>
+
+    <div class="row">
+        <h2>Set Transformations</h2>
+        <div class="demo span9" id="droppable_container">
+            <div class="span2">
+                <%- i = 0 %>
+                <%- @transforms.each do |transform|%>
+                    <%- i += 1%>
+                
+                    <div id="drag_<%= i %>" class="draggable">
+                        <%= transform.name %>
+                    </div>
+                <%-end%>
+            </div>
+            <div class="span3">
+                <div id="drop_1" class="droppable_item">
+                    Transform Port!
+                </div>
+            </div>        
+        </div>
+        <div class="span3">
+            <div class="btn-group btn-group-vertical span2">
+                <p><%= link_to "Save Config", nil, :class => "btn btn-large btn-block"%></p>
+            </div>    
+        </div>  
+    </div>
+
+    <%-x=0%>
+    <%- @transforms.each do |transform|%>
+        <%- x += 1%>
+        <script type="text/javascript">
+            new Draggable('drag_<%= x %>', {
+                revert: true, 
+                snap: [40,40]
+                });
+        </script>
+    <%-end %>
+    
+    <script type="text/javascript">
+
+        Droppables.add('drop_1', { 
+           accept: 'draggable',
+           hoverclass: 'hover',
+           onDrop: function() { $('drop_1').highlight(); }
+            });
+    </script>
+<%- end %>
