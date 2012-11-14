@@ -103,30 +103,34 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Controler for static 'home' pages</p>
 
-  <h2>Constant Summary</h2>
-  
-    <dl class="constants">
-      
-        <dt id="MOTE_JSON_REGEX-constant" class="">MOTE_JSON_REGEX =
-          
-        </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>{\s*name:(\w+),\s*radio:(\w+)
-(,\s*(sensors:{.*}),\s*(transforms:{.*}))?\s*}</span><span class='regexp_end'>/x</span></span></pre></dd>
-      
-        <dt id="SENSOR_REGEX-constant" class="">SENSOR_REGEX =
-          
-        </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>.*</span><span class='regexp_end'>/x</span></span></pre></dd>
-      
-        <dt id="TRANSFORM_REGEX-constant" class="">TRANSFORM_REGEX =
-          
-        </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>.*</span><span class='regexp_end'>/x</span></span></pre></dd>
-      
-    </dl>
-  
 
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Jon Saenz</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
 
 
 
@@ -304,8 +308,6 @@
       <pre class="lines">
 
 
-17
-18
 19
 20
 21
@@ -360,10 +362,12 @@
 70
 71
 72
-73</pre>
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_createMote'>createMote</span>
   <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>radio</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -442,14 +446,14 @@
       <pre class="lines">
 
 
-11
-12
 13
 14
-15</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='ivar'>@sensors</span> <span class='op'>=</span> <span class='const'>Sensor</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
@@ -476,8 +480,6 @@
       <pre class="lines">
 
 
-75
-76
 77
 78
 79
@@ -489,10 +491,12 @@
 85
 86
 87
-88</pre>
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_loadMote'>loadMote</span>
   <span class='comment'>#if params[:file]
@@ -528,15 +532,15 @@
       <pre class="lines">
 
 
-97
-98
 99
 100
 101
-102</pre>
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setRadio'>setRadio</span>
   <span class='ivar'>@radios</span> <span class='op'>=</span> <span class='const'>Radio</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
@@ -564,15 +568,15 @@
       <pre class="lines">
 
 
-90
-91
 92
 93
 94
-95</pre>
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setSensor'>setSensor</span>
   <span class='ivar'>@sensors</span> <span class='op'>=</span> <span class='const'>Sensor</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
@@ -600,15 +604,15 @@
       <pre class="lines">
 
 
-104
-105
 106
 107
 108
-109</pre>
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/home_controller.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setTransform'>setTransform</span>
   <span class='ivar'>@transforms</span> <span class='op'>=</span> <span class='const'>Transform</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
@@ -626,7 +630,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Nov 14 15:37:01 2012 by
+  Generated on Wed Nov 14 15:59:59 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

@@ -1,11 +1,13 @@
+# Controler for static 'home' pages
+# @author Jon Saenz
 class HomeController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   
-  MOTE_JSON_REGEX = /{\s*name:(\w+),\s*radio:(\w+)
-                       (,\s*(sensors:{.*}),\s*(transforms:{.*}))?\s*}/x
+  #MOTE_JSON_REGEX = /{\s*name:(\w+),\s*radio:(\w+)
+                #       (,\s*(sensors:{.*}),\s*(transforms:{.*}))?\s*}/x
 
-  SENSOR_REGEX = /.*/x
-  TRANSFORM_REGEX = /.*/x
+  #SENSOR_REGEX = /.*/x
+  #TRANSFORM_REGEX = /.*/x
 
 
   def index
