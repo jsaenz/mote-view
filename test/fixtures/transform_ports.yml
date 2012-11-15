@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  transform_id: 1
+  port_id: 1
+
+two:
+  transform_id: 1
+  port_id: 1
