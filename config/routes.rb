@@ -20,6 +20,8 @@ MoteView::Application.routes.draw do
   root :to => "home#index" 
   
   match "admin" => "admin#index", :as => :admin
+  
+  match "motes/download/:id" => "motes#download", :as => :download
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

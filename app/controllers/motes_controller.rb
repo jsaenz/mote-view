@@ -79,4 +79,10 @@ class MotesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
+  def download
+    @mote = Mote.find(params[:id])
+    send_data @mote.to_json, :type => "text/json", :filename => @mote.name+'.json'
+  end
 end
