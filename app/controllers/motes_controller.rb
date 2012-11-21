@@ -23,11 +23,22 @@ class MotesController < ApplicationController
 
   # GET /motes/upload
   # GET /motes/upload.json
-  def new
-
+  def upload
+    @mote = mote.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @mote }
+    end
+  end
+
+  # GET /motes/new
+  # GET /motes/new.json
+  def new
+    @mote = Mote.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @radio }
     end
   end
 
@@ -78,5 +89,11 @@ class MotesController < ApplicationController
       format.html { redirect_to motes_url }
       format.json { head :no_content }
     end
+  end
+  
+  
+  def download
+    @mote = Mote.find(params[:id])
+    send_data @mote.to_json, :type => "text/json", :filename => @mote.name+'.json'
   end
 end

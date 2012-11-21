@@ -1,11 +1,13 @@
+# Controler for static 'home' pages
+# @author Jon Saenz
 class HomeController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   
-  MOTE_JSON_REGEX = /{\s*name:(\w+),\s*radio:(\w+)
-                       (,\s*(sensors:{.*}),\s*(transforms:{.*}))?\s*}/x
+  #MOTE_JSON_REGEX = /{\s*name:(\w+),\s*radio:(\w+)
+                #       (,\s*(sensors:{.*}),\s*(transforms:{.*}))?\s*}/x
 
-  SENSOR_REGEX = /.*/x
-  TRANSFORM_REGEX = /.*/x
+  #SENSOR_REGEX = /.*/x
+  #TRANSFORM_REGEX = /.*/x
 
 
   def index
@@ -73,18 +75,18 @@ class HomeController < ApplicationController
   end
   
   def loadMote
-    if params[:file]
-      lines = params[:file].tempfile.readlines.map(&:chomp) #readlines from file & removes newline symbol
-      lines.each do |l| 
-        m = l.match(MOTE_JSON_REGEX) #parse line 
-        mote = Mote.create name: m[1], radio: m[2]
+    #if params[:file]
+    #  lines = params[:file].tempfile.readlines.map(&:chomp) #readlines from file & removes newline symbol
+    #  lines.each do |l| 
+    #    m = l.match(MOTE_JSON_REGEX) #parse line 
+    #    mote = Mote.create name: m[1], radio: m[2]
         #if m[3]
         #  if m[4] { sensors = m[4].match(SENSOR_REGEX) }
         #  if m[5] { transforms = m[5].match(TRANSFORM_REGEX) }
         #end
-      end
-    end
-  redirect_to '/motes/'
+    #  end
+    #end
+  #redirect_to '/motes/'
   end
   
   def setSensor
