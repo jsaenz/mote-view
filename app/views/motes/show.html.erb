@@ -50,8 +50,8 @@
 
 <div class="span3">
   <% if !@mote.radio %>
-    <%= link_to 'Add a Radio', '/home/setRadio',:class => "btn btn-large btn-block" %>
+    <%= link_to 'Add a Radio', {:controller => "home", :action => "setRadio", :id => @mote.id.to_s },:class => "btn btn-large btn-block" %>
   <% else %>
-    <%= link_to 'Change Radio', {:controller => "home", :action => "setRadio", :mote => @mote.id.to_s }, :class => "btn btn-large btn-block" %>
+    <%= link_to 'Change Radio', {:controller => "home", :action => "setRadio", :id => @mote.id.to_s }, :class => "btn btn-large btn-block" %>
   <% end %>
 </div>

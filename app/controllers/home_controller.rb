@@ -106,7 +106,7 @@ class HomeController < ApplicationController
   end
   
   def setRadio
-    @mote = Mote.find(14)
+    @mote = Mote.find(params[:id])
     @radios = Radio.all
     if @radios.nil? or @radios.empty?
       flash.now[:alert] = "There are no radios to add to your mote. Have an Administrator add a Radio."
@@ -114,11 +114,16 @@ class HomeController < ApplicationController
   end
 
   def post_radio
-    @mote = Mote.find(params[:mote])
-    @mote.update_attributes(radio: Radio.find(params[:radio]))
+    @radio = Radio.find(params[:radio])
+    @radio.motes << Mote.find(params[:mote])
     respond_to do |format|
-        format.html { render text: 'Success'}
+      if @radio.save
+        format.html { render text: 'Success' + @radio.motes.to_s}
         format.json { render nothing: true }
+      else
+        format.html { render text: 'FAILURE'}
+        format.json { render nothing: true }
+      end
     end
   end
   

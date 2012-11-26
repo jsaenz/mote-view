@@ -69,11 +69,6 @@
 
 <!-- The following is based on an example I found at http://jqueryui.com/droppable/#photo-manager -->
 <head>
-    <% if @mote.radio %>
-        <%= @mote.radio %>
-    <% else %>
-        NO RADIO
-    <% end %>
     <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 
@@ -92,30 +87,6 @@
             stack: $field
         });
  
-        // let the field be droppable, accepting the gallery items
-        //$field.droppable({
-        //    accept: "#pallete > li",
-        //    activeClass: "ui-state-highlight",
-        //    drop: function(event, ui) { 
-        //        $(this).empty();
-        //        var $clone = ui.draggable.clone();
-        //        $clone.appendTo($(this));
-                //jQuery.ajax({ 
-                //    async:true, 
-                //    type: "POST", 
-                //    url: ("motes/post_radio"), 
-                //    data: {"mote": <%= @mote.name %>, "radio": $clone.id }
-                //    dataType: "script"
-                //    success: alert("radio post successful")
-                //});
-        //        jQuery.post( '/motes/post_radio', function(data) {
-        //                $('.result').html(data);
-        //        });
-        //    },
-        //    out: function(event, ui){
-        //        $(this).droppable('option', 'accept', '.drag-item');
-        //     }
-        //});
          $field.droppable({
             accept: "#pallete > li",
             drop: function(event, props){
@@ -123,9 +94,10 @@
                 var $clone = props.draggable.clone();
                 $clone.appendTo($(this));
                 $.ajax({
-                    url: '/motes/<%= @mote.id.to_s %>',
-                    type: 'PUT',
-                    data: { authenticity_token: AUTH_TOKEN, id: '<%= @mote.id.to_s %>', mote: { radio_id: $clone.attr('id') } }
+                    url: 'post_radio',
+                    type: 'POST',
+                    data: { authenticity_token: AUTH_TOKEN, mote: '<%= @mote.id.to_s %>', radio: $clone.attr('id') 
+                    }
                 }); 
             }
       });
