@@ -63,11 +63,11 @@ class MotesController < ApplicationController
     end
   end
 
+
   # PUT /motes/1
   # PUT /motes/1.json
   def update
     @mote = Mote.find(params[:id])
-
     respond_to do |format|
       if @mote.update_attributes(params[:mote])
         format.html { redirect_to @mote, notice: 'Mote was successfully updated.' }
@@ -78,6 +78,8 @@ class MotesController < ApplicationController
       end
     end
   end
+
+
 
   # DELETE /motes/1
   # DELETE /motes/1.json

@@ -14,11 +14,8 @@
             <% @motes.each do |mote| %>
             <tr>
                 <td><%= mote.name %></td>
-                <td><%= mote.description %></td>
-                <td><%= mote.content %></td>
                 <td><%= link_to 'Show', mote %></td>
-                <td><%=link_to 'download', 'motes/download/' + radio.id.to_s%></td>
-                <td><%= link_to 'Edit', edit_mote_path(sensor) %></td>
+                <td><%= link_to 'Edit', 'home/setRadio' %></td>
                 <td><%= link_to 'Destroy', mote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
             <% end %>

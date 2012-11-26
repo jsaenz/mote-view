@@ -25,13 +25,12 @@
     position: relative;
     top: 30px;
     line-height: 50px; }
-*/  div.draggable {
+*/  li.draggable {
     width: 60px;
     height: 60px;
     cursor: move;
     background: #9fcfba;
     border: 1px solid #666;
-    text-align: center;
     position: relative;
     top: 30px;
     line-height: 50px; }

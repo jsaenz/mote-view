@@ -9,7 +9,6 @@ class HomeController < ApplicationController
   #SENSOR_REGEX = /.*/x
   #TRANSFORM_REGEX = /.*/x
 
-
   def index
     @sensors = Sensor.all
     @radios = Radio.all
@@ -88,8 +87,18 @@ class HomeController < ApplicationController
     #end
   #redirect_to '/motes/'
   end
+
+  def setName
+    @mote = Mote.new
+  end
+
+  def post_name
+  end
+
   
   def setSensor
+    @mote = Mote.find(name: params[:mote])
+    @mote.radio = Radio.find(name: params[:radio])
     @sensors = Sensor.all
     if @sensors.nil? or @sensors.empty?
       flash.now[:alert] = "There are no sensors to add to your mote. Have an Administrator add a Sensor."
@@ -97,9 +106,19 @@ class HomeController < ApplicationController
   end
   
   def setRadio
+    @mote = Mote.find(14)
     @radios = Radio.all
     if @radios.nil? or @radios.empty?
       flash.now[:alert] = "There are no radios to add to your mote. Have an Administrator add a Radio."
+    end
+  end
+
+  def post_radio
+    @mote = Mote.find(params[:mote])
+    @mote.update_attributes(radio: Radio.find(params[:radio]))
+    respond_to do |format|
+        format.html { render text: 'Success'}
+        format.json { render nothing: true }
     end
   end
   
