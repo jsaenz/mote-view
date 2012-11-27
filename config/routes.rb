@@ -19,10 +19,13 @@ MoteView::Application.routes.draw do
   match "home/setRadio" => "home#setRadio", :as => :setRadio
   match "home/setTransform" => "home#setTransform", :as => :setTransform 
   match "home/postMote" => "home#postMote", :as => :postMote   
+
   root :to => "home#index" 
 
-  match "home/post_radio" => "home#post_radio", :as => :post_radio
-  
+  match "home/post_radio"     => "home#post_radio",     :as => :post_radio
+  match "home/post_sensor"    => "home#post_sensor",    :as => :post_sensor 
+  match "home/post_transform" => "home#post_transform", :as => :post_transform   
+
   match "admin" => "admin#index", :as => :admin
   
   match "motes/download/:id" => "motes#download", :as => :download

@@ -97,11 +97,25 @@ class HomeController < ApplicationController
 
   
   def setSensor
-    @mote = Mote.find(name: params[:mote])
-    @mote.radio = Radio.find(name: params[:radio])
+    @mote = Mote.find(params[:id])
     @sensors = Sensor.all
     if @sensors.nil? or @sensors.empty?
       flash.now[:alert] = "There are no sensors to add to your mote. Have an Administrator add a Sensor."
+    end
+  end
+
+  def post_sensor
+    @sensor = Sensor.where(name: params[:sensor]).first
+    @mote = Mote.find(params[:mote])
+    @port = @mote.ports.build(sensor: @sensor, portNumber: params[:portNum])
+    respond_to do |format|
+      if @port.save
+        format.html { render text: 'Success' }
+        format.json { render nothing: true }
+      else
+        format.html { render text: 'FAILURE'}
+        format.json { render nothing: true }
+      end
     end
   end
   
@@ -128,9 +142,26 @@ class HomeController < ApplicationController
   end
   
   def setTransform
+    @mote = Mote.find(params[:id])
     @transforms = Transform.all
+
     if @transforms.nil? or @transforms.empty?
       flash.now[:alert] = "There are no transformations to add to your mote. Have an Administrator add a Transformation."
+    end
+  end
+
+ def post_transform
+    @transform = Transform.where(name: params[:transform]).first
+    @port = Port.find(params[:port])
+    @port.transforms << @transform
+    respond_to do |format|
+      if @port.save
+        format.html { render text: 'Success' }
+        format.json { render nothing: true }
+      else
+        format.html { render text: 'FAILURE'}
+        format.json { render nothing: true }
+      end
     end
   end
 end

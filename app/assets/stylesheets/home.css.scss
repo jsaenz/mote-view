@@ -6,11 +6,12 @@ ul#pallete {
 	width: 65%;
 	list-style-type: none; 
 	list-style-position: inside;
-	min-height: 12em;}
+	min-height: 12em;
+}
     .pallete li { float: left; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
     .pallete li img { width: 58px; height: 50; cursor: move; }
  
-    #field { float: right; width: 32%; min-height: 18em; padding: 1%;}
+    #field { float: right; padding: 1%;}
     .field h4 { line-height: 16px; margin: 0 0 0.4em; }
     .field h4 .ui-icon { float: left; }
     .field .gallery h5 { display: none; }

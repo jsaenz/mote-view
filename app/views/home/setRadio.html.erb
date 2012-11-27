@@ -1,133 +1,74 @@
-<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
-
-
-<!--<%- unless flash[:alert].blank? %>
+<%- unless flash[:alert].blank? %>
     <%- alert=flash[:alert] %>
-<%- else %>
-    <div class="row">
+<% else %>
+    <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+
+    <head>
         <h2>Set Radio</h2>
-        <div class="span9" id="droppable_container">
-            <div class="row">
-            <div class="span3">
-                <div id="drop_1" class="droppable_item">
-                    
-                </div>
-            </div> 
-            <div class="span2">
-                <%- i = 0 %>
-                <%- @radios.each do |radio|%>
-                    <%- i += 1%>
-                
-                    <div id="drag_<%= i %>" class="draggable">
-                        <%= radio.name %>
-                    </div>
-                <%-end%>
-            </div>       
-            </div>
-        </div>
-        <div class="span3">
-            <div class="btn-group btn-group-vertical span2">
-                <p><%= link_to "Add Sensors", setSensor_path, :class => "btn btn-large btn-block"%></p>
-            </div>    
-        </div>       
+        <%= @mote.name %>
+        <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+        <script>
+        $(function() {
+            // Create a pallete and a field
+            var $pallete = $( "#pallete" ),
+                $field = $( "#field" );
+     
+            // let the pallete items be draggable
+            $( "li", $pallete ).draggable({
+                revert: "invalid", // when not dropped, the item will revert back to its initial position
+                containment: "document",
+                helper: "clone",
+                cursor: "move",
+                stack: $field
+            });
+     
+             $field.droppable({
+                accept: "#pallete > li",
+                hoverclass: 'hover',
+                drop: function(event, props){
+                    $(this).empty();
+                    var $clone = props.draggable.clone();
+                    $clone.appendTo($(this));
+                    $.ajax({
+                        url: 'post_radio',
+                        type: 'POST',
+                        data: { authenticity_token: AUTH_TOKEN, mote: '<%= @mote.id.to_s %>', radio: $clone.attr('id') 
+                        }
+                    }); 
+                }
+          });
+        });
+        </script>
+    </head>
+    <body>
+     
+
+    <div id="field" class="droppable_item">
+        Drag to Here!
     </div>
 
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <div class="span10 well">
+     
+    <ul id="pallete" class="pallete">
+        <%- @radios.each do |radio|%>
+            <li id="<%= radio.id.to_s %>" class="draggable">
+                <%= radio.name %>
+                <%= image_tag('antenna.png') %>
+            </li>
+        <%-end%>
+        
+    </ul>
+    </div>
 
+    <div class="span3">
+                <div class="btn-group btn-group-vertical span2">
+                    <p><%= link_to "Add Sensors", {:action => "setSensor", :id => @mote.id.to_s }, 
+                            :class => "btn btn-large btn-block"%></p>
+                </div>
 
-    <%-x=0%>
-    <%- @radios.each do |radio|%>
-        <%- x += 1%>
-        <script type="text/javascript">
-            $( "#drag_<%= x %>" ).draggable({
-                helper: 'clone', 
-                revert: 'invalid',
-                stack: '#drop_1'
-            });
-        </script>
-    <%-end %>
-    
-    <script type="text/javascript">
-
-        //Droppables.add('drop_1', { 
-           //accept: 'draggable',
-           //hoverclass: 'hover',
-           //onDrop: function() { $('drop_1').highlight(); }
-            //});
-            $( "#drop_1" ).droppable({ 
-                greedy: true,
-                hoverClass: "hover",
-                drop: function( event, ui ) {
-                    $( this ).text().replaceWith( ui.draggable.text() );
-                }
-            });
-    </script>
-<%- end %>
-
--->
-
-<!-- The following is based on an example I found at http://jqueryui.com/droppable/#photo-manager -->
-<head>
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-
-    <script>
-    $(function() {
-        // Create a pallete and a field
-        var $pallete = $( "#pallete" ),
-            $field = $( "#field" );
- 
-        // let the pallete items be draggable
-        $( "li", $pallete ).draggable({
-            revert: "invalid", // when not dropped, the item will revert back to its initial position
-            containment: "document",
-            helper: "clone",
-            cursor: "move",
-            stack: $field
-        });
- 
-         $field.droppable({
-            accept: "#pallete > li",
-            drop: function(event, props){
-                $(this).empty();
-                var $clone = props.draggable.clone();
-                $clone.appendTo($(this));
-                $.ajax({
-                    url: 'post_radio',
-                    type: 'POST',
-                    data: { authenticity_token: AUTH_TOKEN, mote: '<%= @mote.id.to_s %>', radio: $clone.attr('id') 
-                    }
-                }); 
-            }
-      });
-    });
-    </script>
-</head>
-<body>
- 
-
-<div id="field" class="droppable_item">
-</div>
-
-<div class="span10 well">
- 
-<ul id="pallete" class="pallete">
-    <%- @radios.each do |radio|%>
-        <li id="<%= radio.id.to_s %>" class="draggable">
-            <%= radio.name %>
-            <%= image_tag('antenna.png') %>
-        </li>
-    <%-end%>
-    
-</ul>
-</div>
-
-<div class="span3">
-            <div class="btn-group btn-group-vertical span2">
-                <p><%= link_to "Add Sensors", setSensor_path, :class => "btn btn-large btn-block"%></p>
-            </div>
-
- 
+    </div> 
+<% end %>
 
 

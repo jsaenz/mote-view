@@ -1,59 +1,76 @@
 <%- unless flash[:alert].blank? %>
     <%- alert=flash[:alert] %>
-<%- else %>
+<% else %>
+    <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 
-    <div class="row">
-        <h2>Set Transformations</h2>
-        <div class="demo span9" id="droppable_container">
-            <div class="span2">
-                <%- i = 0 %>
-                <%- @transforms.each do |transform|%>
-                    <%- i += 1%>
-                
-                    <div id="drag_<%= i %>" class="draggable">
-                        <%= transform.name %>
-                    </div>
-                <%-end%>
+    <head>
+        <h2>Set Transforms</h2>
+        <%= @mote.name %>
+        <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+        <script>
+        $(function() {
+            // Create a pallete and a field
+            var $pallete = $( "#pallete" ),
+                $field = $( "#field" );
+     
+            // let the pallete items be draggable
+            $( "li", $pallete ).draggable({
+                revert: "invalid",
+                containment: "document",
+                helper: "clone",
+                cursor: "move",
+                stack: $field
+            });
+     
+             $( "div", $field ).droppable({
+                accept: "#pallete > li",
+                hoverclass: 'hover',
+                drop: function(event, props){
+                    var $clone = props.draggable.clone();
+                    $clone.appendTo($(this));
+                    $.ajax({
+                        url: 'post_transform',
+                        type: 'POST',
+                        data: { authenticity_token: AUTH_TOKEN, transform: $clone.attr('id'),
+                            port: $(this).attr('id') 
+                        }
+                    }); 
+                }
+          });
+        });
+        </script>
+    </head>
+    <body>
+     
+
+    <div id="field" class="span9 well">
+        <% @mote.ports.each do |port| %>
+           <div id = "<%=port.id%>" class ="droppable_item">
+             <p>Port <%=port.portNumber%></p>
+             <p><%= port.sensor.name %></p>
             </div>
-            <div class="span3">
-                <div id="drop_1" class="droppable_item">
-                    Transform Port 1!
-                </div>
-                <div id="drop_2" class="droppable_item">
-                    Transform Port 2!
-                </div>
-            </div>        
-        </div>
-        <div class="span3">
-            <div class="btn-group btn-group-vertical span2">
-                <p><%= link_to "Save Config", nil, :class => "btn btn-large btn-block"%></p>
-            </div>    
-        </div>  
+        <% end %>
     </div>
 
-    <%-x=0%>
-    <%- @transforms.each do |transform|%>
-        <%- x += 1%>
-        <script type="text/javascript">
-            new Draggable('drag_<%= x %>', {
-                revert: true, 
-                snap: [40,40]
-                });
-        </script>
-    <%-end %>
-    
-    <script type="text/javascript">
+    <div class="span10 well">
+     
+    <ul id="pallete" class="pallete">
+        <%- @transforms.each do |transform|%>
+            <li id="<%= transform.name.to_s %>" >
+                <%= transform.name %>
+            </li>
+        <%-end%>
+        
+    </ul>
+    </div>
 
-        Droppables.add('drop_1', { 
-           accept: 'draggable',
-           hoverclass: 'hover',
-           onDrop: function() { $('drop_1').highlight(); }
-            });
-            
-        Droppables.add('drop_2', { 
-           accept: 'draggable',
-           hoverclass: 'hover',
-           onDrop: function() { $('drop_2').highlight(); }
-            });
-    </script>
-<%- end %>
+    <div class="span3">
+                <div class="btn-group btn-group-vertical span2">
+                    <p><%= link_to "Done!", "/motes/" + @mote.id.to_s,
+                            :class => "btn btn-large btn-block"%></p>
+                </div>
+
+    </div> 
+<% end %>

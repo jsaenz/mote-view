@@ -14,7 +14,8 @@
 
   div#droppable_container {
     height: 140px;
-    width: 400px; }
+    width: 400px; 
+}
 /*  div#draggable_item {
     width: 100px;
     height: 100px;
@@ -26,8 +27,8 @@
     top: 30px;
     line-height: 50px; }
 */  li.draggable {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 120px;
     cursor: move;
     background: #9fcfba;
     border: 1px solid #666;
@@ -35,14 +36,15 @@
     top: 30px;
     line-height: 50px; }
     div.droppable_item {
-    width: 160px;
-    height: 120px;
+    width: 85px;
+    height: 125px;
     background: #fff;
     border: 5px solid #ccc;
     text-align: center;
-    position: relative;
-    top: 40px;
-    left: 160px;
+    position: center;
+    float: left;
+    list-style-type: none; 
+    list-style-position: center;
     line-height: 100px; }
   div.droppable_item.hover {
     border: 5px dashed #aaa;

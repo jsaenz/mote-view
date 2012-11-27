@@ -14,12 +14,3 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
-$(".ajax-referral").click(function(){
-  $.ajax({
-      type: "POST", 
-      url: $(this).parent("form").attr("action") + "?&authenticity_token=" + AUTH_TOKEN, 
-      data:$(this).parent("form").serialize(),
-      dataType: "script"
-      });
-  return false;
-});
