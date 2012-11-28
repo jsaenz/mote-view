@@ -3,7 +3,7 @@
 # @note transforms are a nested association and as such must be added via a port objects
 class Mote < ActiveRecord::Base
 
-  attr_accessible :name, :radio
+  attr_accessible :name, :radio, :sensors, :transforms
   
   validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
 

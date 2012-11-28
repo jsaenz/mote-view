@@ -14,7 +14,7 @@ class MotesController < ApplicationController
   # GET /motes/1.json
   def show
     @mote = Mote.find(params[:id])
-
+    @mote.ports.sort! { |a,b| a.portNumber <=> b.portNumber }
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @mote }

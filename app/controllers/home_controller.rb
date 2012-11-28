@@ -105,9 +105,15 @@ class HomeController < ApplicationController
   end
 
   def post_sensor
-    @sensor = Sensor.where(name: params[:sensor]).first
     @mote = Mote.find(params[:mote])
-    @port = @mote.ports.build(sensor: @sensor, portNumber: params[:portNum])
+    # check to see if port number is used already
+    @sensor = Sensor.where(name: params[:sensor]).first
+    @port = @mote.ports.where(portNumber: params[:portNum]).first
+    if @port
+      @port.sensor = @sensor
+    else
+      @port = @mote.ports.build(sensor: @sensor, portNumber: params[:portNum])
+    end
     respond_to do |format|
       if @port.save
         format.html { render text: 'Success' }
@@ -143,6 +149,7 @@ class HomeController < ApplicationController
   
   def setTransform
     @mote = Mote.find(params[:id])
+    @mote.ports.sort! { |a,b| a.portNumber <=> b.portNumber }
     @transforms = Transform.all
 
     if @transforms.nil? or @transforms.empty?
@@ -151,15 +158,20 @@ class HomeController < ApplicationController
   end
 
  def post_transform
-    @transform = Transform.where(name: params[:transform]).first
     @port = Port.find(params[:port])
-    @port.transforms << @transform
+    @transform = @port.transforms.where(name: params[:transform]).first
+    added = false
+    if !@transform
+      added = true
+      @transform = Transform.where(name: params[:transform]).first
+      @port.transforms << @transform
+    end
     respond_to do |format|
-      if @port.save
-        format.html { render text: 'Success' }
+      if added
+        format.html { render text: 'success' }
         format.json { render nothing: true }
       else
-        format.html { render text: 'FAILURE'}
+        format.html { render text: 'notmodified'}
         format.json { render nothing: true }
       end
     end
