@@ -3,14 +3,22 @@ source 'https://rubygems.org'
 #install rails framework
 gem 'rails', '3.2.8'
 
+
+
 #gem for logins
 gem 'devise'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#install db gem
-gem 'sqlite3'
+group :production do
+  gem 'pg', '0.12.2'
+end
+
+group :development do
+  #install db gem 
+  gem 'sqlite3'
+end
 
 #for more advanced views
 gem "twitter-bootstrap-rails"
