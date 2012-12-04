@@ -38,6 +38,6 @@ class Mote < ActiveRecord::Base
   		end
     end
 
-  	{ mote: {name: self.name, rado: self.radio.name, sensors: sensors, transforms: transforms}}
+  	{ mote: {name: self.name, radio: self.radio.name, sensors: sensors, transforms: transforms}}
   end
 end
