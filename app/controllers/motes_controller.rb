@@ -46,6 +46,7 @@ class MotesController < ApplicationController
   def edit
     @mote = Mote.find(params[:id])
   end
+  
 
   # POST /motes
   # POST /motes.json
@@ -78,7 +79,6 @@ class MotesController < ApplicationController
       end
     end
   end
-
 
 
   # DELETE /motes/1

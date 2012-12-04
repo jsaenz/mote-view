@@ -4,17 +4,16 @@
         <table class="table table-bordered">
             <tr>
                 <th>Name</th>
-                <!--<th>Description</th>
-                <th>Content</th>-->
                 <th></th>
                 <th></th>
                 <th></th>
             </tr>
+
             <% @motes.each do |mote| %>
             <tr>
-                <td><%= mote.name %></td>
-                <td><%= link_to 'Show', mote %></td>
-                <td><%= link_to 'Edit', 'home/setRadio' %></td>
+                <td><%= link_to mote.name, mote %></td>
+                <td><%=link_to 'download', 'download/' + mote.id.to_s%></td>
+                <td><%= link_to 'Edit', {:controller => "home", :action => "setRadio", :id => mote.id.to_s } %> </td>
                 <td><%= link_to 'Destroy', mote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
             <% end %>

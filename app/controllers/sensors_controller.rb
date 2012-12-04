@@ -1,5 +1,7 @@
 class SensorsController < ApplicationController
   before_filter :authenticate_user!
+  
+  
   # GET /sensors
   # GET /sensors.json
   def index
@@ -10,6 +12,7 @@ class SensorsController < ApplicationController
       format.json { render json: @sensors }
     end
   end
+
 
   # GET /sensors/1
   # GET /sensors/1.json
@@ -22,6 +25,7 @@ class SensorsController < ApplicationController
     end
   end
 
+
   # GET /sensors/new
   # GET /sensors/new.json
   def new
@@ -33,10 +37,12 @@ class SensorsController < ApplicationController
     end
   end
 
+
   # GET /sensors/1/edit
   def edit
     @sensor = Sensor.find(params[:id])
   end
+
 
   # POST /sensors
   # POST /sensors.json
@@ -54,6 +60,7 @@ class SensorsController < ApplicationController
     end
   end
 
+
   # PUT /sensors/1
   # PUT /sensors/1.json
   def update
@@ -70,6 +77,7 @@ class SensorsController < ApplicationController
     end
   end
 
+
   # DELETE /sensors/1
   # DELETE /sensors/1.json
   def destroy
@@ -81,4 +89,5 @@ class SensorsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end

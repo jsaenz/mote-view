@@ -43,15 +43,14 @@
     	</tr>
     </table>
 </p>
+<div class="span2">
+    <% if !@mote.radio %>
+        <%= link_to 'Add a Radio', {:controller => "home", :action => "setRadio", :id => @mote.id.to_s },:class => "btn btn-large btn-block" %>
+    <% else %>
+        <%= link_to 'Change Radio', {:controller => "home", :action => "setRadio", :id => @mote.id.to_s }, :class => "btn btn-large btn-block" %>
+    <% end %>  
+    <%=link_to 'download', 'download/' + @mote.id.to_s,:class => "btn btn-large btn-block" %>
+    <%= link_to 'Edit', edit_mote_path(@mote) ,:class => "btn btn-large btn-block" %>
+    <%= link_to 'Back', motes_path ,:class => "btn btn-large btn-block" %>
 
-
-<%= link_to 'Edit', edit_mote_path(@mote) %> |
-<%= link_to 'Back', motes_path %>
-
-<div class="span3">
-  <% if !@mote.radio %>
-    <%= link_to 'Add a Radio', {:controller => "home", :action => "setRadio", :id => @mote.id.to_s },:class => "btn btn-large btn-block" %>
-  <% else %>
-    <%= link_to 'Change Radio', {:controller => "home", :action => "setRadio", :id => @mote.id.to_s }, :class => "btn btn-large btn-block" %>
-  <% end %>
 </div>

@@ -8,15 +8,13 @@
                 <th>Content</th>
                 <th></th>
                 <th></th>
-                <th></th>
             </tr>
 
             <% @radios.each do |radio| %>
             <tr>
-                <td><%= radio.name %></td>
+                <td><%= link_to radio.name, radio %></td>
                 <td><%= radio.description %></td>
                 <td><%= radio.content %></td>
-                <td><%= link_to 'Show', radio %></td>
                 <td><%= link_to 'Edit', edit_radio_path(radio) %></td>
                 <td><%= link_to 'Destroy', radio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>

@@ -11,7 +11,9 @@
             <div class="navbar">
                 <ul class="nav">
                     <li class="divider-vertical"></li>
-                    <li class="<%= 'active' if params[:controller] == 'home' %>"><%= link_to "New configuration", home_path  %></li>
+                    <li class="<%= 'active' if params[:controller] == 'home' %>"><%= link_to "Home", home_path  %></li>
+                    <li class="divider-vertical"></li>
+                    <li class ="<%= 'active' if params[:controller] == 'motes' %>"><%= link_to "New Mote", new_mote_path  %></li>
                     <li class="divider-vertical"></li>
                     <li class="<%= 'active' if params[:controller] == 'admin' %>"><%= link_to "Admin", admin_path%></li>
                     <li class="divider-vertical"></li>              

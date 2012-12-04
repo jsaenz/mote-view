@@ -1,5 +1,7 @@
 class TransformsController < ApplicationController
   before_filter :authenticate_user!
+  
+  
   # GET /transforms
   # GET /transforms.json
   def index
@@ -10,6 +12,7 @@ class TransformsController < ApplicationController
       format.json { render json: @transforms }
     end
   end
+
 
   # GET /transforms/1
   # GET /transforms/1.json
@@ -22,6 +25,7 @@ class TransformsController < ApplicationController
     end
   end
 
+
   # GET /transforms/new
   # GET /transforms/new.json
   def new
@@ -33,10 +37,12 @@ class TransformsController < ApplicationController
     end
   end
 
+
   # GET /transforms/1/edit
   def edit
     @transform = Transform.find(params[:id])
   end
+
 
   # POST /transforms
   # POST /transforms.json
@@ -54,6 +60,7 @@ class TransformsController < ApplicationController
     end
   end
 
+
   # PUT /transforms/1
   # PUT /transforms/1.json
   def update
@@ -70,6 +77,7 @@ class TransformsController < ApplicationController
     end
   end
 
+
   # DELETE /transforms/1
   # DELETE /transforms/1.json
   def destroy
@@ -81,4 +89,5 @@ class TransformsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end

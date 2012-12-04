@@ -1,20 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+    <div class="span4 well">
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @radio.name %>
-</p>
+        <p>
+            <b>Name:</b>
+            <%= @radio.name %>
+        </p>
 
-<p>
-  <b>Description:</b>
-  <%= @radio.description %>
-</p>
+        <p>
+            <b>Description:</b>
+            <%= @radio.description %>
+        </p>
 
-<p>
-  <b>Content:</b>
-  <%= @radio.content %>
-</p>
+        <p>
+            <b>Content:</b>
+            <%= @radio.content %>
+        </p>
 
 
-<%= link_to 'Edit', edit_radio_path(@radio) %> |
-<%= link_to 'Back', radios_path %>
+        <%= link_to 'Edit', edit_radio_path(@radio) %> |
+        <%= link_to 'Back', radios_path %>
+    </div>
+</div>

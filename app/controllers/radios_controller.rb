@@ -11,6 +11,7 @@ class RadiosController < ApplicationController
     end
   end
 
+
   # GET /radios/1
   # GET /radios/1.json
   def show
@@ -21,6 +22,7 @@ class RadiosController < ApplicationController
       format.json { render json: @radio }
     end
   end
+
 
   # GET /radios/new
   # GET /radios/new.json
@@ -33,10 +35,12 @@ class RadiosController < ApplicationController
     end
   end
 
+
   # GET /radios/1/edit
   def edit
     @radio = Radio.find(params[:id])
   end
+
 
   # POST /radios
   # POST /radios.json
@@ -54,6 +58,7 @@ class RadiosController < ApplicationController
     end
   end
 
+
   # PUT /radios/1
   # PUT /radios/1.json
   def update
@@ -70,6 +75,7 @@ class RadiosController < ApplicationController
     end
   end
 
+
   # DELETE /radios/1
   # DELETE /radios/1.json
   def destroy
@@ -81,4 +87,5 @@ class RadiosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end

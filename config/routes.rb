@@ -12,8 +12,6 @@ MoteView::Application.routes.draw do
 
   get "home/index"
   match "home" => "home#index", :as => :home
-  match "home/createMote" => "home#createMote", :as => :createMote
-  match "home/loadMote" => "home#loadMote", :as => :loadMote
   match "home/setName" => "home#setName", :as => :setName
   match "home/setSensor" => "home#setSensor", :as => :setSensor
   match "home/setRadio" => "home#setRadio", :as => :setRadio
