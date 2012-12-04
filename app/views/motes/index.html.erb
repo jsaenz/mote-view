@@ -12,7 +12,7 @@
             <% @motes.each do |mote| %>
             <tr>
                 <td><%= link_to mote.name, mote %></td>
-                <td><%=link_to 'download', 'download/' + mote.id.to_s%></td>
+                <td><%=link_to 'download', 'motes/download/' + mote.id.to_s%></td>
                 <td><%= link_to 'Edit', {:controller => "home", :action => "setRadio", :id => mote.id.to_s } %> </td>
                 <td><%= link_to 'Destroy', mote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
