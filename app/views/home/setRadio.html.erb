@@ -31,6 +31,7 @@
                     $(this).empty();
                     var $clone = props.draggable.clone();
                     $clone.appendTo($(this));
+                    //$clone.append('<%= image_tag("Red_x_small.PNG",class: "removebtn") %>')
                     $.ajax({
                         url: 'post_radio',
                         type: 'POST',
@@ -38,7 +39,7 @@
                         }
                     }); 
                 }
-          });
+             });
         });
         </script>
     </head>
