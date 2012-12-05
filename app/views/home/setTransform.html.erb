@@ -60,6 +60,7 @@
         <%- @transforms.each do |transform|%>
             <li id="<%= transform.name.to_s %>" >
                 <%= transform.name %>
+                <%= image_tag('transform.png') %>
             </li>
         <%-end%>
         
