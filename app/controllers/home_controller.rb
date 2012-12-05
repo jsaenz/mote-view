@@ -34,6 +34,7 @@ class HomeController < ApplicationController
 
 
   def post_sensor
+    success = true;
     @mote = Mote.find(params[:mote])
     # check to see if port number is used already
     @sensor = Sensor.where(name: params[:sensor]).first
@@ -45,8 +46,10 @@ class HomeController < ApplicationController
     else
       @port = @mote.ports.build(sensor: @sensor, portNumber: params[:portNum])
     end
+    success = success and @port.save
+    @mote.ports.sort! { |a,b| a.portNumber <=> b.portNumber }
     respond_to do |format|
-      if @port.save
+      if success
         format.html { render text: 'Success' }
         format.json { render nothing: true }
       else
@@ -83,7 +86,6 @@ class HomeController < ApplicationController
   
   def setTransform
     @mote = Mote.find(params[:id])
-    @mote.ports.sort! { |a,b| a.portNumber <=> b.portNumber }
     @transforms = Transform.all
 
     if @transforms.nil? or @transforms.empty?
