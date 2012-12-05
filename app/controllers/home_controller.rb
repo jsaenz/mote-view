@@ -40,6 +40,8 @@ class HomeController < ApplicationController
     @port = @mote.ports.where(portNumber: params[:portNum]).first
     if @port
       @port.sensor = @sensor
+      # If the port gets a new sensor we remove the transforms
+      @port.transforms.delete(@port.transforms)
     else
       @port = @mote.ports.build(sensor: @sensor, portNumber: params[:portNum])
     end
