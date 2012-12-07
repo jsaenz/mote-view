@@ -21,7 +21,11 @@ class Mote < ActiveRecord::Base
   	ports = self.ports
   	sensors = {}
   	transforms = {}
-
+  	if self.radio.nil?
+  	 rado = ""
+  	else
+  	 rado = self.radio.name
+    end
   	ports.each do |port|
   		if port.portNumber < 10
   			prefix = 'A0'
@@ -38,6 +42,6 @@ class Mote < ActiveRecord::Base
   		end
     end
 
-  	{ mote: {name: self.name, radio: self.radio.name, sensors: sensors, transforms: transforms}}
+  	{ mote: {name: self.name, radio: rado, sensors: sensors, transforms: transforms}}
   end
 end
