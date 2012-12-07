@@ -4,8 +4,6 @@
     <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 
     <head>
-        <h2>Set Radio</h2>
-        <%= @mote.name %>
         <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
         <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 
@@ -44,10 +42,12 @@
         </script>
     </head>
     <body>
-     
+     <h2>Set Radio for <%= @mote.name %></h2>
 
-    <div id="field" class="droppable_item">
-        Drag to Here!
+    <div id="field" class="span9 well">
+        <div id = "1" class ="droppable_item">
+            Radio
+        </div>
     </div>
 
     <div class="span10 well">
@@ -63,12 +63,15 @@
     </ul>
     </div>
 
-    <div class="span3">
-                <div class="btn-group btn-group-vertical span2">
-                    <p><%= link_to "Add Sensors", {:action => "setSensor", :id => @mote.id.to_s }, 
-                            :class => "btn btn-large btn-block"%></p>
-                </div>
-
+    <div class="span3 well">
+        <div class="btn-group btn-group-vertical span2">
+            <%= link_to "Sensors", {:action => "setSensor", :id => @mote.id.to_s }, 
+                :class => "btn btn-large btn-block"%>
+            <%= link_to "Transforms", {:action => "setTransform", :id => @mote.id.to_s },
+                :class => "btn btn-large btn-block"%>
+            <%= link_to "Done", "/motes/" + @mote.id.to_s,
+                            :class => "btn btn-large btn-block"%>
+        </div>
     </div> 
 <% end %>
 

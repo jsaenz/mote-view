@@ -43,7 +43,7 @@
     	</tr>
     </table>
 </p>
-<div class="span2">
+<div class="btn-group btn-group-vertical span2">
     <% if !@mote.radio %>
         <%= link_to 'Add a Radio', {:controller => "home", :action => "setRadio", :id => @mote.id.to_s },:class => "btn btn-large btn-block" %>
     <% else %>
