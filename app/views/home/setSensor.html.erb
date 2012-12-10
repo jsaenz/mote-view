@@ -12,7 +12,7 @@
         $(function() {
             // Create a pallete and a field
             var $pallete = $( "#pallete" ),
-                $field = $( "#field" );
+                $field = $( ".dropbox" );
      
             // let the pallete items be draggable
             $( "li", $pallete ).draggable({
@@ -23,13 +23,14 @@
                 stack: $field
             });
      
-             $( "div", $field ).droppable({
+             $( $field ).droppable({
                 accept: "#pallete > li",
                 hoverclass: 'hover',
                 drop: function(event, props){
-                    $(this).empty();
+                    $('li', this).remove();
                     var $clone = props.draggable.clone();
                     $clone.appendTo($(this));
+                    $clone.position( { of: $(this), my: 'center center', at: 'center center' } );
                     $.ajax({
                         url: 'post_sensor',
                         type: 'POST',
@@ -47,9 +48,9 @@
         <h2>Set Sensor for <%= @mote.name %></h2>
      
 
-        <div id="field" class="span9 well">
+        <div class="span9 well">
             <% 1.upto(numberOfPorts) do |i| %>
-               <div id = "<%=i%>" class ="droppable_item">
+               <div id = "<%=i%>" class ="dropbox droppable_item">
                     Port <%=i%>
                </div>
             <% end %>

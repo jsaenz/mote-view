@@ -11,7 +11,8 @@ ul#pallete {
     .pallete li { float: left; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
     .pallete li img { width: 58px; height: 50; cursor: move; }
  
-    #field { float: right; padding: 1%;}
+    .dropbox { float: left; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
+    .dropbox li { float: left; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
     .field h4 { line-height: 16px; margin: 0 0 0.4em; }
     .field h4 .ui-icon { float: left; }
     .field .gallery h5 { display: none; }
