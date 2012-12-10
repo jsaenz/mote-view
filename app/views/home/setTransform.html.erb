@@ -11,7 +11,7 @@
         $(function() {
             // Create a pallete and a field
             var $pallete = $( "#pallete" ),
-                $field = $( "#field" );
+                $field = $( ".transBox" );
      
             // let the pallete items be draggable
             $( "li", $pallete ).draggable({
@@ -22,7 +22,7 @@
                 stack: $field
             });
      
-             $( "div", $field ).droppable({
+             $( $field ).droppable({
                 accept: "#pallete > li",
                 hoverclass: 'hover',
                 drop: function(event, props){
@@ -43,11 +43,10 @@
     <body>
      <h2>Set Transform for <%= @mote.name %></h2>
 
-    <div id="field" class="span9 well">
+    <div class="span9 well">
         <% @mote.ports.each do |port| %>
-           <div id = "<%=port.id%>" class ="droppable_item">
-            <p>Port <%=port.portNumber%></p>
-            <p><%= port.sensor.name %></p>
+           <div id = "<%=port.id%>" class ="transBox droppable_item">
+            <p>Port <%=port.portNumber%><br><%= port.sensor.name %></p>
            </div>
         <% end %>
     </div>
@@ -56,9 +55,9 @@
      
     <ul id="pallete" class="pallete">
         <%- @transforms.each do |transform|%>
-            <li id="<%= transform.name.to_s %>" >
+            <li id="<%= transform.name.to_s %>" class="transform">
                 <%= transform.name %>
-                <%= image_tag('transform.png') %>
+                <!--<%= image_tag('transform.png') %>-->
             </li>
         <%-end%>
         

@@ -46,6 +46,13 @@
     list-style-type: none; 
     list-style-position: center;
     line-height: 100px; }
+    li.transform {
+        width: 80px;
+        height: 20px;
+        border: 1px solid #666;
+        cursor: move;
+        background: #9fcfba;
+    }
   div.droppable_item.hover {
     border: 5px dashed #aaa;
     background:#efefef; }

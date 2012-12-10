@@ -9,10 +9,13 @@ ul#pallete {
 	min-height: 12em;
 }
     .pallete li { float: left; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
-    .pallete li img { width: 58px; height: 50; cursor: move; }
+    .pallete li img { width: 58px; height: 50px; cursor: move; }
  
-    .dropbox { float: left; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
+    .dropbox { float: center; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
     .dropbox li { float: left; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
+    .transBox { float: left; width: 58px; height: 500px; 
+        padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
+    .transBox li{ float: left; width: 58px;}
     .field h4 { line-height: 16px; margin: 0 0 0.4em; }
     .field h4 .ui-icon { float: left; }
     .field .gallery h5 { display: none; }
