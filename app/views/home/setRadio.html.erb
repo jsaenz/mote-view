@@ -12,7 +12,7 @@
             // Create a pallete and a field
             var $pallete = $( "#pallete" ),
                 $field = $( ".dropbox" );
-     
+            
             // let the pallete items be draggable
             $( "li", $pallete ).draggable({
                 revert: "invalid", // when not dropped, the item will revert back to its initial position
@@ -21,7 +21,11 @@
                 cursor: "move",
                 //stack: $(this)
             });
-     
+            // This section fills the radio box if a radio is already associated with the mote
+            <% if @mote.radio %>
+              $("#<%= @mote.radio.id.to_s %>").clone().appendTo($field);
+              $(".dropbox > li").position( { of: ".dropbox", my: 'center center', at: 'center center' } );
+            <% end %>
              $field.droppable({
                 accept: "#pallete > li",
                 hoverclass: 'hover',

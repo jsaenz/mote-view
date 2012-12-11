@@ -21,7 +21,12 @@
                 cursor: "move",
                 stack: $field
             });
-     
+            <% @mote.ports.each do |p| %>
+              <% p.transforms.each do |t| %>
+                var $copy = $("#pallete > #<%=t.name%>").clone()
+                $copy.appendTo($("#<%= p.id %>"));
+               <% end %>
+            <% end %>
              $( $field ).droppable({
                 accept: "#pallete > li",
                 hoverclass: 'hover',

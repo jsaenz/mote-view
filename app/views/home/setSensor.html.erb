@@ -13,7 +13,8 @@
             // Create a pallete and a field
             var $pallete = $( "#pallete" ),
                 $field = $( ".dropbox" );
-     
+            
+
             // let the pallete items be draggable
             $( "li", $pallete ).draggable({
                 revert: "invalid",
@@ -22,7 +23,17 @@
                 cursor: "move",
                 stack: $field
             });
-     
+            // fill the ports with sensors that are associated
+            <% @mote.ports.each do |p| %>
+              var $copy = $("#pallete > #<%= p.sensor.name.to_s %>").clone()
+              $copy.appendTo($("#<%= p.portNumber %>"));
+              $copy.position( 
+                { of: "#<%= p.portNumber %>", 
+                  my: 'center center', 
+                  at: 'center center' 
+                } 
+               );
+            <% end %>
              $( $field ).droppable({
                 accept: "#pallete > li",
                 hoverclass: 'hover',
@@ -48,7 +59,7 @@
         <h2>Set Sensor for <%= @mote.name %></h2>
      
 
-        <div class="span9 well">
+        <div id="sensor_field" class="span9 well">
             <% 1.upto(numberOfPorts) do |i| %>
                <div id = "<%=i%>" class ="dropbox droppable_item">
                     Port <%=i%>
