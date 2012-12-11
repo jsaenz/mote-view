@@ -20,9 +20,12 @@ MoteView::Application.routes.draw do
 
   root :to => "home#index" 
 
-  match "home/post_radio"     => "home#post_radio",     :as => :post_radio
-  match "home/post_sensor"    => "home#post_sensor",    :as => :post_sensor 
-  match "home/post_transform" => "home#post_transform", :as => :post_transform   
+  match "home/post_radio"       => "home#post_radio",       :as => :post_radio
+  match "home/remove_radio"     => "home#remove_radio",     :as => :remove_radio
+  match "home/post_sensor"      => "home#post_sensor",      :as => :post_sensor 
+  match "home/remove_sensor"    => "home#remove_sensor",    :as => :remove_sensor
+  match "home/post_transform"   => "home#post_transform",   :as => :post_transform 
+  match "home/remove_transform" => "home#remove_transform", :as => :remove_transform   
 
   match "admin" => "admin#index", :as => :admin
   

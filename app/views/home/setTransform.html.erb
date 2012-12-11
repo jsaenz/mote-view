@@ -27,7 +27,27 @@
                 $copy.appendTo($("#<%= p.id %>"));
                <% end %>
             <% end %>
-             $( $field ).droppable({
+            $( "li", $field).draggable({
+                revert: "invalid", // when not dropped, the item will revert back to its initial position
+                containment: "document",
+                cursor: "move",
+                stack: $( "li" )
+            });
+            $(".delete").droppable({
+                accept: ".transBox > li",
+                drop: function(event, props){
+                   $.ajax({
+                        url: 'remove_transform',
+                        type: 'POST',
+                        data: { authenticity_token: AUTH_TOKEN, 
+                                port: props.draggable.parent().attr('id'),
+                                transform: props.draggable.attr('id') 
+                        }
+                    });
+                    props.draggable.remove()
+                }
+            });
+            $( $field ).droppable({
                 accept: "#pallete > li",
                 hoverclass: 'hover',
                 drop: function(event, props){
@@ -39,9 +59,15 @@
                         data: { authenticity_token: AUTH_TOKEN, transform: $clone.attr('id'),
                             port: $(this).attr('id') 
                         }
+                    });
+                    $clone.draggable({
+                        revert: "invalid", // when not dropped, the item will revert back to its initial position
+                        containment: "document",
+                        cursor: "move"
                     }); 
                 }
-          });
+            });
+
         });
         </script>
     </head>
@@ -54,6 +80,9 @@
             <p>Port <%=port.portNumber%><br><%= port.sensor.name %></p>
            </div>
         <% end %>
+        <div id = "trash" class ="delete">
+               DELETE
+            </div>
     </div>
 
     <div class="span10 well">

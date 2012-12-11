@@ -32,7 +32,9 @@ class HomeController < ApplicationController
     end
   end
 
-
+  # POST triggered by AJAX call in setSensor, associates the 
+  #       specified sensor with the specified mote
+  # @author Tyler Hunt
   def post_sensor
     success = true;
     @mote = Mote.find(params[:mote])
@@ -59,6 +61,25 @@ class HomeController < ApplicationController
     end
   end
 
+  # POST triggered by AJAX call in setSensor, removes the 
+  #       specified sensor
+  # @author Tyler Hunt
+  def remove_sensor
+    @mote = Mote.find(params[:mote])
+    @port = Port.where(portNumber: params[:portNum]).first
+    @port.transforms.delete(@port.transforms)
+    @port.delete
+    respond_to do |format|
+      if @mote.save
+        format.html { render text: 'Success' }
+        format.json { render nothing: true }
+      else
+        format.html { render text: 'FAILURE'}
+        format.json { render nothing: true }
+      end
+    end
+  end
+
   
   def setRadio
     @mote = Mote.find(params[:id])
@@ -68,13 +89,15 @@ class HomeController < ApplicationController
     end
   end
 
-
+  # POST triggered by AJAX call in setRadio, associates the 
+  #       specified trasform with the specified mote
+  # @author Tyler Hunt
   def post_radio
     @radio = Radio.find(params[:radio])
     @radio.motes << Mote.find(params[:mote])
     respond_to do |format|
       if @radio.save
-        format.html { render text: 'Success' + @radio.motes.to_s}
+        format.html { render text: 'Success'}
         format.json { render nothing: true }
       else
         format.html { render text: 'FAILURE'}
@@ -82,7 +105,24 @@ class HomeController < ApplicationController
       end
     end
   end
-
+  
+  # POST triggered by AJAX call in setRadio, removes the 
+  #       specified radio
+  # @author Tyler Hunt
+  def remove_radio
+    @radio = Radio.find(params[:radio])
+    @mote = Mote.find(params[:mote])
+    @radio.motes.delete(@mote)
+    respond_to do |format|
+      if @radio.save
+        format.html { render text: 'Success'}
+        format.json { render nothing: true }
+      else
+        format.html { render text: 'FAILURE'}
+        format.json { render nothing: true }
+      end
+    end
+  end
   
   def setTransform
     @mote = Mote.find(params[:id])
@@ -93,7 +133,9 @@ class HomeController < ApplicationController
     end
   end
 
-
+ # POST triggered by AJAX call in setTransforms, associates the 
+ #       specified trasform with the secified mote
+ # @author Tyler Hunt
  def post_transform
     @port = Port.find(params[:port])
     @transform = @port.transforms.where(name: params[:transform]).first
@@ -105,6 +147,26 @@ class HomeController < ApplicationController
     end
     respond_to do |format|
       if added
+        format.html { render text: 'success' }
+        format.json { render nothing: true }
+      else
+        format.html { render text: 'notmodified'}
+        format.json { render nothing: true }
+      end
+    end
+  end
+
+  # POST triggered by AJAX call in setTransforms, removes the 
+  #       specified trasform
+  # @author Tyler Hunt
+  def remove_transform
+    @port = Port.find(params[:port])
+    @transform = @port.transforms.where(name: params[:transform]).first
+    if @transform
+      @port.transforms.delete(@transform)
+    end
+    respond_to do |format|
+      if @port.save
         format.html { render text: 'success' }
         format.json { render nothing: true }
       else

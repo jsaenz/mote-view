@@ -21,11 +21,29 @@
                 cursor: "move",
                 //stack: $(this)
             });
+
             // This section fills the radio box if a radio is already associated with the mote
             <% if @mote.radio %>
-              $("#<%= @mote.radio.id.to_s %>").clone().appendTo($field);
-              $(".dropbox > li").position( { of: ".dropbox", my: 'center center', at: 'center center' } );
+              $copy = $("#<%= @mote.radio.id.to_s %>").clone().appendTo($field);
+              $copy.position( { of: ".dropbox", my: 'center center', at: 'center center' } );
             <% end %>
+            $( "li", $field).draggable({
+                revert: "invalid", // when not dropped, the item will revert back to its initial position
+                containment: "document",
+                cursor: "move"
+            });
+            $(".delete").droppable({
+                accept: ".dropbox > li",
+                drop: function(event, props){
+                   $.ajax({
+                        url: 'remove_radio',
+                        type: 'POST',
+                        data: { authenticity_token: AUTH_TOKEN, mote: '<%= @mote.id.to_s %>', radio: props.draggable.attr('id') 
+                        }
+                    });
+                    props.draggable.remove()
+                }
+            });
              $field.droppable({
                 accept: "#pallete > li",
                 hoverclass: 'hover',
@@ -40,6 +58,11 @@
                         type: 'POST',
                         data: { authenticity_token: AUTH_TOKEN, mote: '<%= @mote.id.to_s %>', radio: $clone.attr('id') 
                         }
+                    });
+                    $clone.draggable({
+                        revert: "invalid", // when not dropped, the item will revert back to its initial position
+                        containment: "document",
+                        cursor: "move"
                     }); 
                 }
              });
@@ -49,9 +72,12 @@
     <body>
      <h2>Set Radio for <%= @mote.name %></h2>
 
-    <div class="span2 well">
+    <div class="span3 well">
         <div id = "field" class ="dropbox droppable_item">
             Radio
+        </div>
+        <div id = "trash" class ="delete">
+            DELETE
         </div>
     </div>
 

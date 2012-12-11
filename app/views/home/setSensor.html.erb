@@ -21,7 +21,7 @@
                 containment: "document",
                 helper: "clone",
                 cursor: "move",
-                stack: $field
+                stack: $( "li", $field )
             });
             // fill the ports with sensors that are associated
             <% @mote.ports.each do |p| %>
@@ -34,7 +34,26 @@
                 } 
                );
             <% end %>
-             $( $field ).droppable({
+            $( "li", $field).draggable({
+                revert: "invalid", // when not dropped, the item will revert back to its initial position
+                containment: "document",
+                cursor: "move",
+                stack: $( "li" )
+            });
+            $(".delete").droppable({
+                accept: ".dropbox > li",
+                drop: function(event, props){
+                   $.ajax({
+                        url: 'remove_sensor',
+                        type: 'POST',
+                        data: { authenticity_token: AUTH_TOKEN, mote: '<%= @mote.id.to_s %>', 
+                              portNum: props.draggable.parent().attr('id') 
+                        }
+                    });
+                    props.draggable.remove()
+                }
+            });
+            $( $field ).droppable({
                 accept: "#pallete > li",
                 hoverclass: 'hover',
                 drop: function(event, props){
@@ -49,9 +68,14 @@
                             sensor: $clone.attr('id'),
                             portNum: $(this).attr('id') 
                         }
-                    }); 
+                    });
+                    $clone.draggable({
+                        revert: "invalid", // when not dropped, the item will revert back to its initial position
+                        containment: "document",
+                        cursor: "move"
+                    });
                 }
-          });
+            });
         });
          </script>
     </head>
@@ -65,6 +89,9 @@
                     Port <%=i%>
                </div>
             <% end %>
+            <div id = "trash" class ="delete">
+               DELETE
+            </div>
         </div>
 
     <div class="span10 well">

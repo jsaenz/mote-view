@@ -13,6 +13,15 @@ ul#pallete {
  
     .dropbox { float: center; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
     .dropbox li { float: left; width: 58px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
+    .delete{
+        background: #DC143C;
+        width: 65px;
+        height: 125px;
+        float: left;
+        border: 5px solid #ccc;
+        text-align: center;
+        position: center;
+    }
     .transBox { float: left; width: 58px; height: 500px; 
         padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
     .transBox li{ float: left; width: 58px;}
